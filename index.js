@@ -14,7 +14,7 @@ const jpegtran = require("imagemin-jpegtran");
 module.exports = {
     onPostBuild: async config => {
       const files = {};
-      const isProgressive = config.inputs.progressive;
+      const isProgressive = config.inputs.jpegProgressive;
       const glob = `${config.constants.PUBLISH_DIR}/**/*.{gif,jpg,jpeg,png,svg}`;
       const paths = await globby(glob);
 
