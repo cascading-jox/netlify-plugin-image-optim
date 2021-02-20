@@ -9,12 +9,11 @@ const gifsicle = require("imagemin-gifsicle");
 const optipng = require("imagemin-optipng");
 const pngquant = require("imagemin-pngquant");
 const svgo = require("imagemin-svgo");
-const jpegtran = require("imagemin-jpegtran");
+const mozjpeg = require("imagemin-mozjpeg");
 
 module.exports = {
     onPostBuild: async config => {
       const files = {};
-      const isProgressive = config.inputs.jpegProgressive;
       const glob = `${config.constants.PUBLISH_DIR}/**/*.{gif,jpg,jpeg,png,svg}`;
       const paths = await globby(glob);
 
@@ -29,7 +28,7 @@ module.exports = {
       });
 
       const optimizedFiles = await imagemin([glob], {
-        plugins: [gifsicle(), optipng(), pngquant(), svgo(), jpegtran({ progressive: isProgressive })]
+        plugins: [gifsicle(), optipng(), pngquant(), svgo(), mozjpeg()]
       });
 
       optimizedFiles.map(file => {

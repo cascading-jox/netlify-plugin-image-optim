@@ -1,5 +1,2 @@
 name: netlify-plugin-image-optim
-inputs: 
-  - name: jpegProgressive
-    description: Enable or disable progressive encoding for jpeg
-    required: false
+inputs: []
